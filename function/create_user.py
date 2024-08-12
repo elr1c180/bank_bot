@@ -7,5 +7,4 @@ async def create_user(chat_id, username, first_name):
     user_data = {"chat_id": chat_id, "username": username, "name": first_name}
     async with aiohttp.ClientSession() as session:
         async with session.post(ROOT_URL + 'create_user/', data=user_data) as resp:
-            print(resp.status)
-            print(await resp.text())
+            return {await resp.text(), resp.status}
